@@ -14,6 +14,10 @@ public class GatewayConfig {
 				.route("client", r -> r
 						.path("/client")
 						.uri("http://localhost:8081/"))
+				.route("staff", r -> r
+						.path("/staff")
+						.uri("http://localhost:8082/"))
 				.build();
+			
 	}
 }
