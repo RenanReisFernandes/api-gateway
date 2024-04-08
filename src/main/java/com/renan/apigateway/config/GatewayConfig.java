@@ -17,10 +17,14 @@ public class GatewayConfig {
 				.route("staff", r -> r
 						.path("/staff")
 						.uri("http://localhost:8082/"))
-				.route("cep", r -> r
-						.path("/cep/**")
-						.filters(f -> f.rewritePath("/cep/(?<cep>.*)", "/api/cep/v1/${cep}"))
+				.route("cep_brasil_api", r -> r
+						.path("/cep/v1/**")
+						.filters(f -> f.rewritePath("/cep/v1/(?<cep>.*)", "/api/cep/v1/${cep}"))
 						.uri("https://brasilapi.com.br"))
+				.route("cep_via_cep", r -> r
+						.path("/cep/v2/**")
+						.filters(f -> f.rewritePath("/cep/v2/(?<cep>.*)", "/ws/${cep}/json/"))
+						.uri("https://viacep.com.br"))
 				.build();
 			
 	}
